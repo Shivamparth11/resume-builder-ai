@@ -43,5 +43,8 @@ A full-stack Java + Spring Boot based Resume Builder backend enhanced with AI-po
 ```bash
 mvn spring-boot:run
 
+```
 ### ⚙️ 2. start ai in vs code
+
+```bash
 python resume_analyzer.py 
