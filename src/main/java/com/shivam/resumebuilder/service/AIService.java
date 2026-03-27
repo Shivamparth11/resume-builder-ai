@@ -16,21 +16,27 @@ public class AIService {
     public AIService(RestTemplate restTemplate){
         this.restTemplate = restTemplate;
     }
-    public String getAIFeedback(String summary){
-        String pythonApiUrl = "http://localhost:5000/analyze";
+   public Map<String, Object> getAIFeedback(String summary) {
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+    String pythonApiUrl = "http://localhost:5000/analyze";
 
-        Map<String , String> payload = new HashMap<>();
-        payload.put("summary", summary);
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<Map<String , String >> entity = new HttpEntity<>(payload , headers);
+    Map<String, String> payload = new HashMap<>();
+    payload.put("summary", summary);
 
-        try {
-            return restTemplate.postForObject(pythonApiUrl , payload , String.class);
-        }catch (Exception e){
-            return "⚠ Error contacting AI service: "+ e.getMessage();
-        }
+    HttpEntity<Map<String, String>> entity = new HttpEntity<>(payload, headers);
+
+    try {
+        return restTemplate.postForObject(pythonApiUrl, entity, Map.class);
+    } catch (Exception e) {
+
+        Map<String, Object> error = new HashMap<>();
+        error.put("error", "AI service unavailable");
+        error.put("message", e.getMessage());
+
+        return error;
     }
+}
 }

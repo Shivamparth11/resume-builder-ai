@@ -8,25 +8,17 @@ public class ResumeResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
     private String email;
     private String summary;
 
-    @Column(length = 1000)
+    @Column(columnDefinition = "TEXT")
     private String aiFeedback;
-    public String getAiFeedback() {
-        return aiFeedback;
-    }
 
-    public void setAiFeedback(String aiFeedback) {
-        this.aiFeedback = aiFeedback;
-    }
+    // Constructor
+    public ResumeResponse() {}
 
-    // No-args constructor (needed by Spring/Jackson)
-    public ResumeResponse() {
-    }
-
-    // All-args constructor
     public ResumeResponse(int id, String name, String email, String summary) {
         this.id = id;
         this.name = name;
@@ -34,37 +26,23 @@ public class ResumeResponse {
         this.summary = summary;
     }
 
-    // Getters
-    public int getId() {
-        return id;
-    }
+    // Getters & Setters
 
-    public String getName() {
-        return name;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getSummary() {
-        return summary;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    // Setters (optional — include if you expect to modify fields after creation)
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getSummary() { return summary; }
+    public void setSummary(String summary) { this.summary = summary; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getAiFeedback() { return aiFeedback; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setAiFeedback(String aiFeedback) {
+        this.aiFeedback = aiFeedback;
     }
 }
